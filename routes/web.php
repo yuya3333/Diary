@@ -17,6 +17,11 @@ Route::get('welcome', function () {
     return view('welcome');
 });
 
-Route::get('/', 'App\Http\Controllers\DiaryController@index');
+// Route::get('/', 'App\Http\Controllers\DiaryController@index');
+
+Route::resource('/', 'App\Http\Controllers\DiaryRestController')->middleware('auth');
 
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
