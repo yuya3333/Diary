@@ -12,7 +12,7 @@ class Article extends Model
     protected $guarded = array('id');
 
     public static $rules = array(
-        'user_id' => 'required',
+        'user_id' => 'integer|required',
         'title' => 'required',
         'content' => 'required'
     );

@@ -1,10 +1,10 @@
 @extends('layouts.layout')
 
-@section('title', 'Index')
+@section('title', 'show')
 
 @section('menubar')
     @parent
-    インデックスページ
+    詳細ページ
 @endsection
 
 @section('content')
@@ -14,16 +14,13 @@
     @endif
 
     <table>
-    <tr><th>タイトル</th></tr>
+    <tr><th>タイトル</th><th>記事</th></tr>
     <tr>
         <td>
-        @if ($current_user->articles != null)
             <table width="100%">
-            @foreach ($current_user->articles as $article)
-                <tr><td>{{$article->title}}</td></tr>
-            @endforeach
+            <tr><td>{{$article->title}}</td>
+            <td>{{$article->content}}</td></tr>
             </table>
-        @endif
         </td>
     </tr>
     </table>

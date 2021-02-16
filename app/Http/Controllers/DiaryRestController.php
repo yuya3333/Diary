@@ -19,9 +19,7 @@ class DiaryRestController extends Controller
     public function index(Request $request)
     {
         $current_user = Auth::user();
-
-        $users = User::all();
-        return view('index', ['users' => $users, 'current_user' => $current_user]);
+        return view('index', ['current_user' => $current_user]);
 
     }
 
@@ -32,7 +30,7 @@ class DiaryRestController extends Controller
      */
     public function create()
     {
-        //
+        return view('add');
     }
 
     /**
@@ -43,7 +41,14 @@ class DiaryRestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $current_user = Auth::user();
+
+        $article = new Article;
+        $article->title = $request->title;
+        $article->content = $request->content;
+        $article->user_id = $current_user->id;
+        $article->save();
+        return redirect('/article');
     }
 
     /**
@@ -54,7 +59,10 @@ class DiaryRestController extends Controller
      */
     public function show($id)
     {
-        $item = Article::find($id);
+        $current_user = Auth::user();
+
+        $article = Article::find($id);
+        return view('show', ['current_user' => $current_user, 'article' => $article]);
     }
 
     /**
@@ -65,7 +73,8 @@ class DiaryRestController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = Article::find($id);
+        return view('edit', ['article' => $article]);
     }
 
     /**
@@ -77,7 +86,14 @@ class DiaryRestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $current_user = Auth::user();
+
+        $article = Article::find($id);
+        $article->title = $request->title;
+        $article->content = $request->content;
+        $article->user_id = $current_user->id;
+        $article->save();
+        return redirect('/article');
     }
 
     /**
@@ -88,6 +104,7 @@ class DiaryRestController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Article::find($id)->delete();
+        return redirect('/article');
     }
 }
