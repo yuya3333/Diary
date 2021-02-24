@@ -30,7 +30,8 @@ class DiaryRestController extends Controller
      */
     public function create()
     {
-        return view('add');
+        $current_user = Auth::user();
+        return view('create', ['current_user' => $current_user]);
     }
 
     /**
@@ -73,8 +74,10 @@ class DiaryRestController extends Controller
      */
     public function edit($id)
     {
+        $current_user = Auth::user();
+
         $article = Article::find($id);
-        return view('edit', ['article' => $article]);
+        return view('edit', ['current_user' => $current_user, 'article' => $article]);
     }
 
     /**
@@ -93,8 +96,11 @@ class DiaryRestController extends Controller
         $article->content = $request->content;
         $article->user_id = $current_user->id;
         $article->save();
-        return redirect('/article');
-    }
+      return redirect('/article');
+//        return redirect()->route('article');
+//        return redirect()->route('/article', [$id]);
+//        return view('/article/$id');
+}
 
     /**
      * Remove the specified resource from storage.

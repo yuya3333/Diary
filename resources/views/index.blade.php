@@ -18,15 +18,17 @@
     <tr>
         <td>
         @if ($current_user->articles != null)
-            <table width="100%">
+            <table>
             @foreach ($current_user->articles as $article)
-                <tr><td>{{$article->title}}</td></tr>
+                <tr><td><a href="/article/{{$article->id}}">{{$article->title}}</a></td></tr>
             @endforeach
             </table>
         @endif
         </td>
     </tr>
     </table>
+    <input type="button" onclick="location.href='/article/create'" value="記事追加">
+
 @endsection
 
 @section('footer')

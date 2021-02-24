@@ -8,7 +8,12 @@
 @endsection
 
 @section('content')
-    @if (count($errors) > 0)
+@if (Auth::check())
+    <p>USER: {{$current_user->name . ' (' . $current_user->email . ')'}}</p>
+    @else<p>※ログインしていません。(<a href="/login">ログイン</a> | <a href="/register">登録</a>)</p>
+    @endif
+
+   @if (count($errors) > 0)
     <div>
         <ul>
             @foreach ($errors->all() as $error)
@@ -17,6 +22,7 @@
         </ul>
     </div>
     @endif
+
     <form action="/article" method="post">
     <table>
         @csrf

@@ -19,7 +19,7 @@ Route::get('welcome', function () {
 
 // Route::get('/', 'App\Http\Controllers\DiaryController@index');
 
-Route::resource('/article', 'App\Http\Controllers\DiaryRestController')->middleware('auth');
+Route::resource('article', 'App\Http\Controllers\DiaryRestController')->middleware('auth');
 
 
 Auth::routes();

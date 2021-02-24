@@ -17,10 +17,12 @@
     <tr><th>タイトル</th><th>記事</th></tr>
     <tr>
         <td>
-            <table width="100%">
-            <tr><td>{{$article->title}}</td>
-            <td>{{$article->content}}</td></tr>
+            <table>
+                <tr><td>{{$article->title}}</td>
+                <td>{{$article->content}}</td></tr>
             </table>
+            @csrf
+            <input type="button" onclick="location.href='/article/{{ $article->id }}/edit'" value="編集">
         </td>
     </tr>
     </table>
