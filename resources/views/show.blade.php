@@ -23,6 +23,7 @@
             </table>
             @csrf
             <input type="button" onclick="location.href='/article/{{ $article->id }}/edit'" value="編集">
+            <input type="button" onclick="location.href='/article/'" value="戻る">
         </td>
     </tr>
     </table>

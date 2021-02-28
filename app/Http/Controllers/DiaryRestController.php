@@ -19,8 +19,8 @@ class DiaryRestController extends Controller
     public function index(Request $request)
     {
         $current_user = Auth::user();
-        return view('index', ['current_user' => $current_user]);
 
+        return view('index', ['current_user' => $current_user]);
     }
 
     /**
@@ -96,7 +96,7 @@ class DiaryRestController extends Controller
         $article->content = $request->content;
         $article->user_id = $current_user->id;
         $article->save();
-      return redirect('/article');
+        return redirect('/article');
 //        return redirect()->route('article');
 //        return redirect()->route('/article', [$id]);
 //        return view('/article/$id');

@@ -30,9 +30,11 @@
 
         <tr><th>title: </th><td><input type="text" name="title" value="{{ $article->title }}"></td></tr>
         <tr><th>content: </th><td><textarea name="content" >{{$article->content}}</textarea></td></tr>
-        <tr><th></th><td><input type="submit" value="send"></td></tr>
+        <tr><th></th><td><input type="submit" value="変更確定"></td></tr>
     </table>
     </form>
+    <input type="button" onclick="location.href='/article/{{ $article->id }}'" value="変更キャンセル">
+ 
     <form action="/article/{{$article->id}}" method="POST">
     @csrf
     <input type="hidden" name="_method" value="DELETE">
